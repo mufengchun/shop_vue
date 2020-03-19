@@ -1,0 +1,36 @@
+{
+  "root": true,
+  // 环境的全局变量
+  "env": {
+    "es6": true, // 启用 ES6 语法支持以及新的 ES6 全局变量或类型
+    "browser": true, // Node.js 全局变量和 Node.js 作用域
+    "node": true // 浏览器全局变量
+  },
+  "extends": [
+    "plugin:vue/essential",
+    "eslint:recommended"
+  ],
+  "plugins": [
+    "import",
+    "vue",
+    "html" // 此插件用来识别.html 和 .vue文件中的js代码
+  ],
+  "parserOptions": {
+    "parser": "babel-eslint"
+  },
+  "rules": {
+    "indent": ["error", 2],
+    "eqeqeq": [2, "always"], // 要求使用 === 和 !==
+    "no-multi-spaces": 2, // 不能用多余的空格, 1 是警告；2 是报错
+    "no-multiple-empty-lines": [2, {"max": 1}], // 空行最多不能超过2行
+    "no-redeclare": 2, // 禁止重复声明变量
+    "no-trailing-spaces": 2, // 一行结束后面不要有空格
+    // "no-console": 2, // 禁止使用console
+    "no-debugger": 1, // 不禁用debugger
+    "no-unused-vars": [2, {"vars": "all", "args": "after-used"}], // 不能有声明后未被使用的变量或参
+    "semi": [
+      "error",
+      "always"
+    ]
+  }
+}
