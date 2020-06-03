@@ -1,15 +1,19 @@
 module.exports = {
-  lintOnSave: true,
+  lintOnSave: false,
+  publicPath: '/dist',
   devServer: {
     port: 8082,
     proxy: {
       '/api': {
-        target: 'https://datainfo.duapp.com/',
+        target: 'https://springhua.top:3000/',
         changeOrigin: true,
         pathRewrite: {
-          '^/api': 'https://datainfo.duapp.com/'
+          '^/api': 'https://springhua.top:3000/'
         }
       }
     }
+  },
+  configureWebpack: config => {
+    config.devtool = 'cheap-module-eval-source-map';
   }
 };

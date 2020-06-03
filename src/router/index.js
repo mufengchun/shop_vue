@@ -5,23 +5,29 @@ Vue.use(VueRouter);
 
 const routes = [
   {
-    path: '/login',
-    name: 'login',
-    component: () => import(/* webpackChunkName: "about" */ '../views/login/login.vue')
+    path: '/',
+    redirect: '/article'
+    // name: '',
+    // component: () => import(/* webpackChunkName: "about" */ '../views/article/index.vue')
   },
   {
-    path: '/',
-    name: 'home',
+    path: '/comment',
+    name: 'comment',
+    component: () => import(/* webpackChunkName: "about" */ '../views/comment/index.vue')
+  },
+  {
+    path: '/article',
+    name: 'article',
     meta: {
       title: '首页'
     },
-    component: () => import(/* webpackChunkName: "about" */ '../views/home/index.vue')
+    component: () => import(/* webpackChunkName: "about" */ '../views/article/index.vue')
   }
 ];
 
 const router = new VueRouter({
-  mode: 'history',
-  base: process.env.BASE_URL,
+  // mode: 'hash',
+  // base: '',
   routes
 });
 

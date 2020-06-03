@@ -22,12 +22,12 @@
     "indent": ["error", 2],
     "eqeqeq": [2, "always"], // 要求使用 === 和 !==
     "no-multi-spaces": 2, // 不能用多余的空格, 1 是警告；2 是报错
-    "no-multiple-empty-lines": [2, {"max": 1}], // 空行最多不能超过2行
-    "no-redeclare": 2, // 禁止重复声明变量
-    "no-trailing-spaces": 2, // 一行结束后面不要有空格
+    // "no-multiple-empty-lines": [2, {"max": 1}], // 空行最多不能超过2行
+    // "no-redeclare": 2, // 禁止重复声明变量
+    // "no-trailing-spaces": 2, // 一行结束后面不要有空格
     // "no-console": 2, // 禁止使用console
-    "no-debugger": 1, // 不禁用debugger
-    "no-unused-vars": [2, {"vars": "all", "args": "after-used"}], // 不能有声明后未被使用的变量或参
+    // "no-debugger": 1, // 不禁用debugger
+    // "no-unused-vars": [2, {"vars": "all", "args": "after-used"}], // 不能有声明后未被使用的变量或参
     "semi": [
       "error",
       "always"

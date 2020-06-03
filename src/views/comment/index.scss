@@ -1,0 +1,30 @@
+.comment{
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
+  .comment_tishi{
+    color: red;
+  }
+}
+.comment_search{
+  display: flex;
+  align-items: center;
+  padding: 10px;
+}
+.comment_table{
+  padding: 10px;
+  overflow: auto;
+  flex: 1;
+}
+.comment_table_headImg{
+  width: 100px;
+}
+.comment_table_text{
+  min-width: 100px;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  display:-webkit-box;
+  -webkit-line-clamp:3;
+  -webkit-box-orient:vertical;
+}
