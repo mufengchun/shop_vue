@@ -5,9 +5,7 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "dev": "vue-cli-service serve",
-    "devut": "vue-cli-service serve --mode=ut",
-    "build": "vue-cli-service build",
-    "buildwork": "npm run build --mode=work",
+    "build": "vue-cli-service build --mode=prd",
     "lint-fix": "eslint src --config .eslintrc.json --ignore-path .eslintignore --ext .js,.vue --fix",
     "lint": "vue-cli-service lint --fix"
   },
@@ -30,8 +28,8 @@
     "eslint-plugin-vue": "^6.2.2",
     "husky": "1.3.1",
     "lint-staged": "8.1.6",
-    "node-sass": "^4.12.0",
-    "sass-loader": "^8.0.0",
+    "node-sass": "^4.14.1",
+    "sass-loader": "^8.0.2",
     "style-loader": "^1.2.1",
     "vue-template-compiler": "^2.6.10"
   },

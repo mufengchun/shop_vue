@@ -1,6 +1,7 @@
 <template>
   <div class='home'>
     <div class='article_search'>
+
       <div class='article_search_item'>
         标题：
         <el-input v-model="title" style='width: 240px;' size='small'></el-input>
@@ -12,6 +13,7 @@
       <el-button type='primary' @click='searchEvent' size='small' style='margin-left: 20px;'>查询</el-button>
       <el-button type='primary' size='small' style='margin-left: 20px;' @click='isShowAdd = true'>新增</el-button>
     </div>
+
     <div class='article_table'>
       <el-table border size='small'
       :data="tableData"
@@ -77,32 +79,23 @@ export default {
 
   methods: {
     getList () {
-      window.$axios.get('/articles/getArticle').then(res => {
-        if (res.data.data && res.data.data.data) {
-          this.tableData = res.data.data.data;
+      let params = {
+        title: this.title,
+        summary: this.summary
+      };
+      window.$axios.get({url:'/articles/getArticle', params}).then(res => {
+        if (res.data && res.data.data) {
+          this.tableData = res.data.data;
         }
       });
     },
     searchEvent () {
-      let str = '?';
-      if (this.title) {
-        str += `title=${this.title}`;
-      }
-      if (this.title && this.summary) {
-        str += `$summary=${this.summary}`;
-      } else if (this.summary){
-        str += `summary=${this.summary}`;
-      }
-      window.$axios.get('/articles/getArticle' + str).then(res => {
-        if (res.data.data && res.data.data.data) {
-          this.tableData = res.data.data.data;
-        }
-      });
+      this.getList();
     },
     editEvent (id) {
-      window.$axios.get('/articles/getArticle?id=' + id).then(res => {
-        if (res.data.data && res.data.data.data) {
-          this.formData = res.data.data.data[0];
+      window.$axios.get({url: '/articles/getArticle?id=' + id}).then(res => {
+        if (res.data && res.data.data) {
+          this.formData = res.data.data[0];
           this.isShowAdd = true;
         }
       });

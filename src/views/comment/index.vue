@@ -1,6 +1,6 @@
 <template>
   <div class='comment'>
-    <div class="comment_tishi">123</div>
+
     <div class='comment_search'>
       <div class='comment_search_item'>
         标题：
@@ -12,11 +12,12 @@
       </div>
       <el-button type='primary' @click='searchEvent' size='small' style='margin-left: 20px;'>查询</el-button>
     </div>
+
     <div class='comment_table'>
       <el-table border size='small'
       :data="tableData"
       style="width: 100%">
-      <el-table-column prop="id" label="id" width="80"> </el-table-column>
+      <el-table-column prop="commentId" label="id" width="80"> </el-table-column>
       <el-table-column prop="nick" label="nick" width="180"> </el-table-column>
       <el-table-column prop="headImg" label="headImg" width="124">
         <template slot-scope="props">
@@ -41,7 +42,7 @@
       </el-table-column>
       <el-table-column prop="isOpen" label="操作" width='215px'>
         <template slot-scope="props">
-          <el-button type='primary' size='small' @click='editStatusEvent(props.row.commentId, props.row.isOpen)'>{{!props.row.isOpen ? '开放' : '关闭'}}</el-button>
+          <el-button :type="!props.row.isOpen ? 'primary' : 'warning'" size='small' @click='editStatusEvent(props.row.commentId, props.row.isOpen)'>{{!props.row.isOpen ? '开放' : '关闭'}}</el-button>
           <el-button type='primary' size='small' @click='deleEvent(props.row.commentId)'>删除</el-button>
         </template>
       </el-table-column>
@@ -71,27 +72,18 @@ export default {
 
   methods: {
     getList () {
-      window.$axios.get('/comments/getComment').then(res => {
-        if (res.data.data && res.data.data.data) {
-          this.tableData = res.data.data.data;
+      let params = {
+        title: this.title,
+        summary: this.summary
+      };
+      window.$axios.get({url: '/comments/getComment', params}).then(res => {
+        if (res.data && res.data.data) {
+          this.tableData = res.data.data;
         }
       });
     },
     searchEvent () {
-      let str = '?';
-      if (this.title) {
-        str += `title=${this.title}`;
-      }
-      if (this.title && this.summary) {
-        str += `&summary=${this.summary}`;
-      } else if (this.summary){
-        str += `summary=${this.summary}`;
-      }
-      window.$axios.get('/comments/getComment' + str).then(res => {
-        if (res.data.data && res.data.data.data) {
-          this.tableData = res.data.data.data;
-        }
-      });
+      this.getList();
     },
     editStatusEvent (id, isOpen) {
       // let obj = {commentId: id, isOpen: isOpen ? 0 : 1};
@@ -99,10 +91,10 @@ export default {
       if (id) {
         str += `commentId=${id}`;
       }
-      if (isOpen) {
+      if (isOpen || isOpen === 0) {
         str += `&isOpen=${isOpen ? 0 : 1}`;
       }
-      window.$axios.get('/comments/status' + str).then(() => {
+      window.$axios.get({url: '/comments/status' + str}).then(() => {
         this.$message({
           message: '状态修改成功',
           type: 'success'

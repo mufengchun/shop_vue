@@ -6,7 +6,7 @@ Vue.use(VueRouter);
 const routes = [
   {
     path: '/',
-    redirect: '/article'
+    redirect: '/fanVideo'
     // name: '',
     // component: () => import(/* webpackChunkName: "about" */ '../views/article/index.vue')
   },
@@ -22,6 +22,14 @@ const routes = [
       title: '首页'
     },
     component: () => import(/* webpackChunkName: "about" */ '../views/article/index.vue')
+  },
+  {
+    path: '/fanVideo',
+    name: 'fanVideo',
+    meta: {
+      title: '首页'
+    },
+    component: () => import(/* webpackChunkName: "about" */ '../views/fanVideo/index.vue')
   }
 ];
 

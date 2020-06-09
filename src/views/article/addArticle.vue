@@ -4,7 +4,7 @@
       <div class='addArticle_title'>
         新增文章
         <span style='flex: 1;'></span>
-        <i class="el-icon-close" @click="$emit('cancelAdd')"></i>
+        <i class="el-icon-close" style="font-size: 14px;" @click="$emit('cancelAdd')"></i>
       </div>
 
       <div class='addArticle_box'>
@@ -24,7 +24,7 @@
             :before-upload="uploadBeforeImg">
             <!-- <el-button slot="trigger" size="small" type="primary">选取文件</el-button> -->
             <i v-if='!form.headImg' slot="default" class="el-icon-plus"></i>
-            <img v-else width="100px" :src="form.headImg" alt="">
+            <img v-else :style="{width: '100px', height: '100px'}" :src="form.headImg" alt="">
             <!-- <div slot="tip" class="el-upload__tip">只能上传jpg/png文件，且不超过500kb</div> -->
           </el-upload>
         </div>
@@ -111,16 +111,16 @@ export default {
     uploadBefore (file) {
       let forData = new FormData();
       forData.append('file', file);
-      window.$axios.post('upload/uploadFile', {data: forData, headers: {'Content-Type': 'multipart/form-data; boundary=<calculated when request is sent>'}}).then(res => {
-        this.form.articleUrl = res.data.data[0] || '';
+      window.$axios.post('upload/uploadFile', {data: forData}, {headers: {'Content-Type': 'multipart/form-data; boundary=<calculated when request is sent>'}}).then(res => {
+        this.form.articleUrl = res.data[0] || '';
       });
       return false;
     },
     uploadBeforeImg (file) {
       let forData = new FormData();
       forData.append('file', file);
-      window.$axios.post('upload/uploadFile', {data: forData, headers: {'Content-Type': 'multipart/form-data; boundary=<calculated when request is sent>'}}).then(res => {
-        this.form.headImg = res.data.data[0] || '';
+      window.$axios.post('upload/uploadFile', {data: forData}, {headers: {'Content-Type': 'multipart/form-data; boundary=<calculated when request is sent>'}}).then(res => {
+        this.form.headImg = res.data[0] || '';
       });
       return false;
     },
@@ -138,7 +138,7 @@ export default {
           this.$emit('successAdd');
         });
       } else {
-        window.$axios.post('articles/submitArticle', {data: this.form}).then(() => {
+        window.$axios.post('articles/submitArticle', {data: this.form}, {headers: {'Content-type': 'application/x-www-form-urlencoded;charset=UTF-8'}}).then(() => {
           this.$emit('cancelAdd');
           this.$emit('successAdd');
         });
