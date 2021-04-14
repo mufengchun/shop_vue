@@ -75,6 +75,10 @@ export default {
 
   created () {
     this.getList();
+    window.$axios.get({url: '/test/404'}).then(() => {
+      // console.log('401 状态流转回来了', res);
+    });
+    // window.$axios.get({url: '/test/404'});
   },
 
   methods: {
@@ -84,9 +88,12 @@ export default {
         summary: this.summary
       };
       window.$axios.get({url:'/articles/getArticle', params}).then(res => {
+        // console.log('请求成功', res.data.data);
         if (res.data && res.data.data) {
           this.tableData = res.data.data;
         }
+      }).catch(() => {
+        // console.log('错误跳出循环');
       });
     },
     searchEvent () {

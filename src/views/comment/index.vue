@@ -116,6 +116,6 @@ export default {
 </script>
 
 <style lang='scss'>
-  // @import url('./index.scss');
-  @import './index.scss';
+  @import url('./index.scss');
+  // @import './index.scss';
 </style>
